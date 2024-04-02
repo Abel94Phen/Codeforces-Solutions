@@ -13,7 +13,3 @@ for _ in range(t):
         n -= 1
     wake_up = min(alarms)
     print(wake_up//60, wake_up%60)
-    
-    
-    
-    
