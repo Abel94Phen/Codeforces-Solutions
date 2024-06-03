@@ -1,4 +1,4 @@
-t = int(input())
+t = eval(input())
 for _ in range(t):
     n, k = map(int, input().split())
     s = list(input())
