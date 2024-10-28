@@ -1,4 +1,7 @@
 def customPow(base, exp, MOD = 1000000007):
+    if exp == 0:
+        return 1
+    
     if exp == 1:
         return base
     
@@ -7,13 +10,7 @@ def customPow(base, exp, MOD = 1000000007):
         return (result * result * base) % MOD
     return result * result % MOD
 
-
-
 k = int(input())
-
-if k == 1:
-    print(6)
-else:
-    power = pow(2,k) - 2
-    print((customPow(4, power) * 6)%1000000007) 
+power = pow(2, k) - 2
+print((customPow(4, power) * 6)%1000000007)
     
