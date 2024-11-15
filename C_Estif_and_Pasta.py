@@ -1,16 +1,18 @@
-def customPow(base, exp, MOD = 1000000007):
-    if exp == 0:
-        return 1
-    
-    if exp == 1:
-        return base
-    
-    result = customPow(base, exp//2)
-    if exp%2:
-        return (result * result * base) % MOD
-    return result * result % MOD
-
+import math
 k = int(input())
-power = pow(2, k) - 2
-print((customPow(4, power) * 6)%1000000007)
-    
+# power = math.pow(2, k) - 2
+def pow(a,b,mod):
+    res = 1
+    while b>0:
+        if b%2==1:
+            res = res*a
+        a = a *a
+        b//=2
+    return res
+
+b=6
+ans = pow(4, b,1000000007) * 6
+ans_ = 2**ans -1
+
+# print((pow(4, power,1000000007) * 6)%1000000007)
+ 
