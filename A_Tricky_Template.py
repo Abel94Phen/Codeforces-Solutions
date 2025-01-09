@@ -5,10 +5,9 @@ for _ in range(t):
     b = input()
     c = input()
     for i in range(n):
-        condition_1 = a[i] != b[i]
-        condition_2 = a[i] == c[i] or b[i] == c[i]
-        if condition_1 and condition_2:
-            print("NO")
+        condition = a[i] != c[i] and b[i] != c[i]
+        if condition:
+            print("YES")
             break
     else:
-        print("YES")
+        print("NO")
