@@ -1,5 +1,7 @@
 from collections import defaultdict
 from collections import deque
+
+
 n = int(input())
 graph = defaultdict(list)
 for _ in range(n - 1):
@@ -7,36 +9,58 @@ for _ in range(n - 1):
     graph[u].append(v)
     graph[v].append(u)
 
+answer = [0 for _ in range(3)]
 
 queue = deque([1])
 visited = set([1])
-last = None
+a = 0
 while queue:
     for _ in range(len(queue)):
-        last = queue.popleft()
-        for neighbor in graph[last]:
+        a = queue.popleft()
+        for neighbor in graph[a]:
             if neighbor not in visited:
                 queue.append(neighbor)
                 visited.add(neighbor)
 
-a, b = last, last
+answer[0] = a
+b = a
 queue = deque([b])
-visited = set([b])
-path = -1
+parent = {b : - 1}
 while queue:
     for _ in range(len(queue)):
         b = queue.popleft()
         for neighbor in graph[b]:
-            if neighbor not in visited:
+            if neighbor not in parent:
+                parent[neighbor] = b
                 queue.append(neighbor)
-                visited.add(neighbor)
-    path += 1
 
-answer = [a, b]
-for i in range(n):
-    if i + 1 != a and i + 1 != b:
-        answer.append(i + 1)
-        break
-print(path)
-print(*answer)
+answer[1] = b
+curr = answer[1]
+path = []
+while curr != -1:
+    path.append(curr)
+    curr = parent[curr]
+if len(path) == n:
+    for i in range(n):
+        if i + 1 != answer[0] and i + 1 != answer[1]:
+            answer[2] = i + 1
+    print(n - 1)
+    print(*answer)
+else:
+    last = -1
+    queue = deque(path)
+    visited = set(path)
+    depth = -1
+    while queue:
+        for _ in range(len(queue)):
+            last = queue.popleft()
+            for neighbor in graph[last]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
+                    visited.add(neighbor)
+        depth += 1
+
+    answer[2] = last
+    print(len(path) + depth - 1)
+    print(*answer)
 
