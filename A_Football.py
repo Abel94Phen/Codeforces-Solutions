@@ -1,11 +1,13 @@
-n = int(input())
-a = int(input())
-b = int(input())
-
-scored = [a // n  for _ in range(n)]
-for i in range(a%n):
-    scored[i] += 1
-
-conceded = [b // n  for _ in range(n)]
-for i in range(b%n):
-    conceded[i] += 1
+players = input()
+left = 0
+for right in range(1, len(players)):
+    if players[right] != players[right - 1]:
+        if right - left > 6:
+            print('YES')
+            break
+        left = right
+else:
+    if right - left + 1 > 6:
+        print('YES')
+    else:
+        print('NO')
