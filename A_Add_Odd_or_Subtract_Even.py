@@ -1,4 +1,5 @@
 t = int(input())
+
 while t > 0:
     a, b = list(map(int, input().split()))
     if a < b and (b - a)%2:
